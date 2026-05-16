@@ -1,0 +1,64 @@
+sethandler <C-a> a:vim
+sethandler <C-b> a:vim
+sethandler <C-c> a:vim
+sethandler <C-d> a:vim
+sethandler <C-e> a:vim
+sethandler <C-f> a:vim
+sethandler <C-g> a:vim
+sethandler <C-h> a:vim
+sethandler <C-i> a:vim
+sethandler <C-j> a:ide
+sethandler <C-k> a:ide
+sethandler <C-l> a:vim
+sethandler <C-m> a:vim
+sethandler <C-n> a:vim
+sethandler <C-o> a:vim
+sethandler <C-p> a:vim
+sethandler <C-q> a:vim
+sethandler <C-r> a:vim
+sethandler <C-s> a:vim
+sethandler <C-t> a:vim
+sethandler <C-u> a:vim
+sethandler <C-v> a:vim
+sethandler <C-v> a:vim
+sethandler <C-w> a:vim
+sethandler <C-x> a:vim
+sethandler <C-y> a:vim
+sethandler <C-z> a:vim
+
+
+set clipboard+=unnamed
+set which-key
+set notimeout
+set highlightedyank
+set hlsearch
+
+let mapleader = " "
+
+let g:WhichKey_FontSize = 20
+let g:WhichKey_PrefixColor = "#a403fe"
+let g:WhichKey_CommandColor = "#01ffff"
+let g:WhichKey_PrefixStyle = "bold"
+let g:WhichKey_KeyStyle = "italic"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKey_ShowTypedSequence = "true"
+
+:map <Tab> <Action>(NextTab)
+:map <S-Tab> <Action>(PreviousTab)
+
+" code refactoring
+:map <leader>rr <Action>(RenameElement)
+:map <leader>RR <Action>(Refactorings.QuickListPopupAction)
+:map <leader>sw <Action>(SurroundWith)
+:map <leader>oi <Action>(OptimizeImports)
+let g:WhichKeyDesc_rename_element = "<leader>rr Rename element"
+let g:WhichKeyDesc_refactors = "<leader>RR Refactorings"
+let g:WhichKeyDesc_surround_with = "<leader>sw Surround with"
+let g:WhichKeyDesc_optimize_import = "<leader>io Optimize import"
+
+:map ff <Action>(AceAction)
+:map fv <Action>(AceTargetAction)
+:map fl <Action>(AceLineAction)
+let g:WhichKeyDesc_ace_action = "ff Ace action"
+let g:WhichKeyDesc_ace_target_action = "fv Ace target action"
+let g:WhichKeyDesc_ace_line_action = "fl Ace line action"

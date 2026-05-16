@@ -1,0 +1,22 @@
+// ────────────── Input Configuration ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+
+input {
+    keyboard {
+        xkb {
+            //If you want to overwrite your keyboard layout,
+            // uncomment the line below and change the layout accordingly.
+            layout "us,ru" // Use the American keyboard layout
+	    options "grp:alt_shift_toggle"
+        }
+        numlock // Enable numlock on startup
+    }
+
+    touchpad {
+        dwt
+        tap // Enable tap-to-click
+    }
+
+    focus-follows-mouse max-scroll-amount="30%" // Automatically focus windows under the mouse pointer
+    workspace-auto-back-and-forth // Enable workspace back & forth switching
+}

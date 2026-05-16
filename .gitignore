@@ -1,0 +1,24 @@
+# Stow itself
+.stow-local-ignore
+
+# Runtime / state / cache
+**/fish/fish_variables
+**/fish/fish_history
+**/micro/buffers/
+**/micro/log.txt
+**/nvim/.netrwhist
+**/nvim/spell/
+**/nvim/shada/
+**/zed/themes/
+**/noctalia/colors.json
+
+# Backups
+*.bak
+*~
+.DS_Store
+
+# Secrets — never commit
+.wakatime.cfg
+**/*.token
+**/*secret*
+**/*credentials*
