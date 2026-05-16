@@ -1,6 +1,7 @@
     window-rule {
         geometry-corner-radius 10 // Set every window radius to 20
         clip-to-geometry true
+        draw-border-with-background false
     }
 
     layer-rule {
