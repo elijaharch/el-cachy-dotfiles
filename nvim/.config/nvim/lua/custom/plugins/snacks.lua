@@ -1,19 +1,14 @@
 local logo = [[
-⠀⠀⠀⠀⠀⠀⠀⣠⡤⠶⡄⠀⠀⠀⠀⠀⠀⠀⢠⠶⣦⣀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢀⣴⣿⡟⠀⠈⣀⣾⣝⣯⣿⣛⣷⣦⡀⠀⠈⢿⣿⣦⡀⠀⠀⠀⠀
-⠀⠀⠀⣴⣿⣿⣿⡇⠀⢼⣿⣽⣿⢻⣿⣻⣿⣟⣷⡄⠀⢸⣿⣿⣾⣄⠀⠀⠀
-⠀⠀⣞⣿⣿⣿⣿⣷⣤⣸⣟⣿⣿⣻⣯⣿⣿⣿⣿⣀⣴⣿⣿⣿⣿⣯⣆⠀⠀
-⠀⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣜⡆⠀
-⢠⣟⣯⣿⣿⣿⣷⢿⣫⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣟⠿⣿⣿⣿⣿⡷⣾⠀
-⢸⣯⣿⣿⡏⠙⡇⣾⣟⣿⡿⢿⣿⣿⣿⣿⣿⢿⣟⡿⣿⠀⡟⠉⢹⣿⣿⢿⡄
-⢸⣯⡿⢿⠀⠀⠱⢈⣿⢿⣿⡿⣏⣿⣿⣿⣿⣿⣿⣿⣿⣀⠃⠀⢸⡿⣿⣿⡇
-⢸⣿⣇⠈⢃⣴⠟⠛⢉⣸⣇⣹⣿⣿⠚⡿⣿⣉⣿⠃⠈⠙⢻⡄⠎⠀⣿⡷⠃
-⠈⡇⣿⠀⠀⠻⣤⠠⣿⠉⢻⡟⢷⣝⣷⠉⣿⢿⡻⣃⢀⢤⢀⡏⠀⢠⡏⡼⠀
-⠀⠘⠘⡅⠀⣔⠚⢀⣉⣻⡾⢡⡾⣻⣧⡾⢃⣈⣳⢧⡘⠤⠞⠁⠀⡼⠁⠀⠀
-⠀⠀⠀⠸⡀⠀⢠⡎⣝⠉⢰⠾⠿⢯⡘⢧⡧⠄⠀⡄⢻⠀⠀⠀⢰⠁⠀⠀⠀
-⠀⠀⠀⠀⠁⠀⠈⢧⣈⠀⠘⢦⠀⣀⠇⣼⠃⠰⣄⣡⠞⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⢤⠼⠁⠀⠀⠳⣤⡼⠀⠀⠀⠀⠀⠀
-    ]]
+         ╱|、
+        (˚ˎ 。7
+         |、˜〵
+        じしˍ,)ノ
+
+     ┌──────────────────┐
+     │   nerfthisdev    │
+     │   nvim ~ moonfly │
+     └──────────────────┘
+]]
 
 return {
   'folke/snacks.nvim',
@@ -21,14 +16,21 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
     bigfile = { enabled = false },
     dashboard = {
       enabled = true,
       preset = {
         header = logo,
+        keys = {
+          { icon = "\u{f07c} ",  key = 'f', desc = 'Find File',       action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = "\u{f15b} ",  key = 'n', desc = 'New File',        action = ':ene | startinsert' },
+          { icon = "\u{f002} ",  key = 'g', desc = 'Find Text',       action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = "\u{f1da} ",  key = 'r', desc = 'Recent Files',    action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = "\u{f013} ",  key = 'c', desc = 'Config',          action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          { icon = "\u{f2f1} ",  key = 's', desc = 'Restore Session', action = ':lua MiniSessions.select()' },
+          { icon = "\u{f0eb2} ", key = 'L', desc = 'Lazy',            action = ':Lazy' },
+          { icon = "\u{f08b} ",  key = 'q', desc = 'Quit',            action = ':qa' },
+        },
       },
 
       sections = {

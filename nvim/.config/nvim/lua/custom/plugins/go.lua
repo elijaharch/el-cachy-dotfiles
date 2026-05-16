@@ -5,7 +5,10 @@ return {
     'neovim/nvim-lspconfig',
     -- { "nvim-treesitter/nvim-treesitter", branch = 'main' } -- optional for master version
   },
-  opts = function()
+  opts = {
+    lsp_inlay_hints = { enable = false },
+  },
+  config = function(_, opts)
     require('go').setup(opts)
     local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
     vim.api.nvim_create_autocmd('BufWritePre', {
@@ -13,10 +16,6 @@ return {
       callback = function() require('go.format').goimports() end,
       group = format_sync_grp,
     })
-    return {
-      -- lsp_keymaps = false,
-      -- other options
-    }
   end,
   event = { 'CmdlineEnter' },
   ft = { 'go', 'gomod' },
