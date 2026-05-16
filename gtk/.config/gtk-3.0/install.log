@@ -1,0 +1,9 @@
+[12:18:14 2026-05-16] FETCHING Version 2.43.2
+[12:18:14 2026-05-16] CREATING /home/nerfthisdev/.spicetify
+[12:18:14 2026-05-16] DOWNLOADING https://github.com/spicetify/cli/releases/download/v2.43.2/spicetify-2.43.2-linux-amd64.tar.gz
+[12:18:16 2026-05-16] EXTRACTING /home/nerfthisdev/.spicetify/spicetify.tar.gz
+[12:18:16 2026-05-16] SETTING EXECUTABLE PERMISSIONS TO /home/nerfthisdev/.spicetify/spicetify
+[12:18:16 2026-05-16] REMOVING /home/nerfthisdev/.spicetify/spicetify.tar.gz
+[12:18:16 2026-05-16] spicetify path already set in /home/nerfthisdev/.config/fish/config.fish, continuing...
+[12:18:16 2026-05-16] spicetify v2.43.2 was installed successfully to /home/nerfthisdev/.spicetify
+[12:18:16 2026-05-16] Run 'spicetify --help' to get started

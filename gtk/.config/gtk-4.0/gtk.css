@@ -1,16 +1,16 @@
 
+
+
 .nautilus-window,
 .nautilus-window > * {
   background-color: transparent;
 }
-
 
 .nautilus-window .sidebar-pane,
 .nautilus-window .sidebar-pane listview,
 .nautilus-window .sidebar-pane > * {
   background-color: transparent;
 }
-
 
 .nautilus-window .view,
 .nautilus-window gridview,
@@ -22,12 +22,19 @@
 }
 
 
-.nautilus-window headerbar,
-.nautilus-window .top-bar {
-  background-color: transparent;
-}
 
 
 .nautilus-window {
-  background-color: rgba(30, 30, 46, 0.35);
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+
+.nautilus-window headerbar,
+.nautilus-window .top-bar {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.nautilus-window .sidebar-pane {
+  background-color: rgba(0, 0, 0, 0.35);
 }

@@ -98,7 +98,9 @@ backup_conflicts() {
     fi
   done < <(find "$DOTFILES_DIR/$pkg" -depth -type d -print0)
 
-  [[ $moved -eq 1 ]] && echo "  ↳ backed up existing files to $BACKUP_DIR"
+  if [[ $moved -eq 1 ]]; then
+    echo "  ↳ backed up existing files to $BACKUP_DIR"
+  fi
 }
 
 for pkg in "${PACKAGES[@]}"; do
