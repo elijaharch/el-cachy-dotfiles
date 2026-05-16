@@ -60,6 +60,7 @@ fi
 backup_conflicts() {
   local pkg="$1"
   local moved=0
+  # 1. Move conflicting files / replace stale symlinks
   while IFS= read -r -d '' file; do
     local rel="${file#$DOTFILES_DIR/$pkg/}"
     local target="$TARGET/$rel"
@@ -71,6 +72,16 @@ backup_conflicts() {
       moved=1
     fi
   done < <(find "$DOTFILES_DIR/$pkg" \( -type f -o -type l \) -print0)
+
+  # 2. Remove empty target directories left behind, so stow can
+  #    "fold" a whole subtree into a single symlink-on-directory.
+  while IFS= read -r -d '' dir; do
+    [[ "$dir" == "$DOTFILES_DIR/$pkg" ]] && continue
+    local rel="${dir#$DOTFILES_DIR/$pkg/}"
+    local target="$TARGET/$rel"
+    [[ -d "$target" && ! -L "$target" ]] && rmdir --ignore-fail-on-non-empty -- "$target" 2>/dev/null || true
+  done < <(find "$DOTFILES_DIR/$pkg" -depth -type d -print0)
+
   [[ $moved -eq 1 ]] && echo "  ↳ backed up existing files to $BACKUP_DIR"
 }
 
