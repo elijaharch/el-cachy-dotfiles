@@ -42,7 +42,14 @@ return {
     explorer = { enabled = false },
     indent = { enabled = false },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      -- follow symlinks so stow-managed configs (e.g. ~/.config/nvim) expand
+      sources = {
+        files = { follow = true },
+        grep = { follow = true },
+      },
+    },
     notifier = { enabled = false },
     quickfile = { enabled = true },
     scope = { enabled = false },

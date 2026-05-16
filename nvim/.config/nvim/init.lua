@@ -103,7 +103,16 @@ vim.o.splitbelow = true
 --   and `:help lua-guide-options`
 vim.o.list = true
 vim.opt.listchars = { tab = "▏ ", trail = "·", nbsp = "␣" }
-vim.opt.fillchars:append({ eob = " ", vert = "│", vertleft = "│", vertright = "│", verthoriz = "│", horiz = "─", horizup = "─", horizdown = "─" })
+vim.opt.fillchars:append({
+	eob = " ",
+	vert = "│",
+	vertleft = "│",
+	vertright = "│",
+	verthoriz = "│",
+	horiz = "─",
+	horizup = "─",
+	horizdown = "─",
+})
 
 vim.api.nvim_create_autocmd("ColorScheme", {
 	group = vim.api.nvim_create_augroup("MoonflyTweaks", { clear = true }),
@@ -118,9 +127,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#74b2ff" })
 
 		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#ff5189", bg = "NONE", italic = true })
-		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn",  { fg = "#fab73d", bg = "NONE", italic = true })
-		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo",  { fg = "#74b2ff", bg = "NONE", italic = true })
-		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint",  { fg = "#7ad5d6", bg = "NONE", italic = true })
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#fab73d", bg = "NONE", italic = true })
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#74b2ff", bg = "NONE", italic = true })
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#7ad5d6", bg = "NONE", italic = true })
 	end,
 })
 
