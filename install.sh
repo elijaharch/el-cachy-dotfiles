@@ -59,11 +59,20 @@ fi
 
 backup_conflicts() {
   local pkg="$1"
+  local pkg_dir="$DOTFILES_DIR/$pkg"
   local moved=0
-  # 1. Move conflicting files / replace stale symlinks
+  # 1. Move conflicting files / replace stale symlinks.
+  #    Skip anything whose path resolves back into our own package —
+  #    otherwise `mv` would follow a parent symlink (e.g. ~/.config/gtk-3.0
+  #    -> dotfiles/gtk/.config/gtk-3.0) and eat the package's real files.
   while IFS= read -r -d '' file; do
-    local rel="${file#$DOTFILES_DIR/$pkg/}"
+    local rel="${file#$pkg_dir/}"
     local target="$TARGET/$rel"
+    local resolved
+    resolved=$(readlink -f -- "$target" 2>/dev/null || true)
+    if [[ -n "$resolved" && "$resolved" == "$pkg_dir"/* ]]; then
+      continue
+    fi
     if [[ -L "$target" ]]; then
       rm -- "$target"
     elif [[ -e "$target" ]]; then
@@ -71,15 +80,22 @@ backup_conflicts() {
       mv -- "$target" "$BACKUP_DIR/$rel"
       moved=1
     fi
-  done < <(find "$DOTFILES_DIR/$pkg" \( -type f -o -type l \) -print0)
+  done < <(find "$pkg_dir" \( -type f -o -type l \) -print0)
 
   # 2. Remove empty target directories left behind, so stow can
   #    "fold" a whole subtree into a single symlink-on-directory.
+  #    Skip shared parent dirs (.config, .local, ...) — they belong to
+  #    multiple packages and should never be removed by us.
   while IFS= read -r -d '' dir; do
     [[ "$dir" == "$DOTFILES_DIR/$pkg" ]] && continue
     local rel="${dir#$DOTFILES_DIR/$pkg/}"
+    case "$rel" in
+      .|.config|.local|.local/share|.local/state|.local/bin|.cache|.ssh|.gnupg) continue ;;
+    esac
     local target="$TARGET/$rel"
-    [[ -d "$target" && ! -L "$target" ]] && rmdir --ignore-fail-on-non-empty -- "$target" 2>/dev/null || true
+    if [[ -d "$target" && ! -L "$target" ]]; then
+      rmdir --ignore-fail-on-non-empty -- "$target" 2>/dev/null || true
+    fi
   done < <(find "$DOTFILES_DIR/$pkg" -depth -type d -print0)
 
   [[ $moved -eq 1 ]] && echo "  ↳ backed up existing files to $BACKUP_DIR"
