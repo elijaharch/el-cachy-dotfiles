@@ -20,7 +20,7 @@ fish_add_path /home/nerfthisdev/.spicetify
 fish_add_path $HOME/.local/share/nvim/mason/bin/
 fish_add_path $HOME/go/bin
 fish_add_path $HOME/.cargo/bin
-
+fish_add_path $HOME/.spicetify
 
 abbr -a c  'clear'
 abbr -a codex 'ALL_PROXY="socks5://127.0.0.1:2080" codex'

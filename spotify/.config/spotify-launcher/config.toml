@@ -1,0 +1,6 @@
+[spotify]
+# Native Wayland so cursor / DPI follow niri instead of XWayland defaults
+extra_arguments = [
+  "--enable-features=UseOzonePlatform,WaylandWindowDecorations",
+  "--ozone-platform=wayland",
+]
