@@ -170,7 +170,18 @@ vim.diagnostic.config({
 	jump = { float = true },
 })
 
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>q", function()
+	vim.diagnostic.setqflist()
+	vim.cmd("copen")
+end, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- Close quickfix / loclist with `q` when focused
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "qf" },
+	callback = function(ev)
+		vim.keymap.set("n", "q", "<Cmd>cclose<CR>", { buffer = ev.buf, silent = true })
+	end,
+})
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -643,6 +654,11 @@ require("lazy").setup({
 								shadow = true,
 								useany = true,
 								fieldalignment = false,
+								-- Silence staticcheck "should have a package/exported comment" checks
+								ST1000 = false,
+								ST1020 = false,
+								ST1021 = false,
+								ST1022 = false,
 							},
 							codelenses = {
 								gc_details = true,
