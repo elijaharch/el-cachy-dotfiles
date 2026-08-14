@@ -1,2 +1,2 @@
-return {}
--- return { "wakatime/vim-wakatime", lazy = false }
+-- return {}
+return { "wakatime/vim-wakatime", lazy = false }

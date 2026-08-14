@@ -1,78 +1,28 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "outline_panel": {
-    "dock": "left"
-  },
-  "agent": {
-    "dock": "right",
-    "favorite_models": [],
-    "model_parameters": []
-  },
-  "git_panel": {
-    "dock": "left"
-  },
-  "collaboration_panel": {
-    "dock": "right"
-  },
-  "edit_predictions": {
-    "mode": "subtle"
-  },
-  "ssh_connections": [
-    {
-      "host": "blps",
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/home/blps"
-          ]
-        },
-        {
-          "paths": [
-            "/home/blps/kerberos-demo"
-          ]
-        }
-      ]
-    }
-  ],
-  "project_panel": {
-    "dock": "left",
-    "hide_hidden": false,
-  },
-  "buffer_font_family": "Iosevka Nerd Font Mono",
-  "vim_mode": true,
   "icon_theme": {
     "mode": "light",
-    "light": "Catppuccin Mocha",
-    "dark": "Catppuccin Macchiato"
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
   },
-  "ui_font_size": 19.0,
-  "buffer_font_size": 14.0,
   "theme": {
-    "mode": "dark",
-    "light": "Ayu Light",
-    "dark": "Catppuccin Macchiato",
+    "mode": "light",
+    "light": "Ayu Mirage",
+    "dark": "Koda Dark"
   },
-
-  "languages": {
-    "Kotlin": {
-      "language_servers": ["kotlin-language-server"],
-    },
-    "TypeScript": {
-      "formatter": "prettier",
-      "format_on_save": "on",
-    },
-    "TSX": {
-      "formatter": "prettier",
-      "format_on_save": "on",
+  "vim_mode": true,
+  "disable_ai": true,
+  "server_url": "https://zed.dev",
+  "proxy": "",
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "context_servers": {
+    "gortex": {
+      "args": ["mcp"],
+      "command": "gortex",
+      "env": {
+        "GORTEX_INDEX_WORKERS": "8",
+      },
     },
   },
-  "proxy": "socks5h://127.0.0.1:2080",
 }

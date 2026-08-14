@@ -1,9 +1,11 @@
 [core]
 	pager = delta
+	sshCommand = ssh -F /home/el/.ssh/config
 [interactive]
 	diffFilter = delta --color-only
 [delta]
 	navigate = true
+	dark = true
 [init]
 	defaultBranch = main
 [fetch]
@@ -13,3 +15,12 @@
 	directory = /opt/esp-idf
 [merge]
 	conflictStyle = zdiff3
+	tool = nvimdiff
+[user]
+	name = Ilya
+	mail = arkhipilya@gmail.com
+	email = arkhipilya@gmail.com
+[diff]
+	tool = nvimdiff
+[pull]
+	rebase = true

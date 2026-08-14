@@ -25,6 +25,23 @@ cd ~/dotfiles
 ./install.sh -D nvim      # снять конкретный пакет
 ```
 
+## Neovim variants
+
+The default `nvim` package is installed by `./install.sh`.
+
+SalarAlo's config is available as an opt-in package, imported from
+`SalarAlo/neovim_configuration` at commit `5986bbc`:
+
+```bash
+./install.sh nvim-salar
+```
+
+Switch back to the default config:
+
+```bash
+./install.sh nvim
+```
+
 
 ## Create dots for new app
 
@@ -38,4 +55,3 @@ cd ~/dotfiles
    ```bash
    ./install.sh newapp
    ```
-

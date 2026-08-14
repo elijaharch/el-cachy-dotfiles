@@ -6,6 +6,7 @@
   "Culture": "",
   "DarkMode": true,
   "AurEnabled": false,
+  "ShellySearchEnabled": false,
   "AurWarningConfirmed": false,
   "FlatPackEnabled": false,
   "ConsoleEnabled": false,
@@ -18,7 +19,7 @@
   "TrayCheckIntervalHours": 12,
   "NoConfirm": false,
   "NewInstall": false,
-  "CurrentVersion": "2.1.5",
+  "CurrentVersion": "2.3.0",
   "UseWeeklySchedule": false,
   "DaysOfWeek": [],
   "Time": null,
@@ -27,7 +28,14 @@
   "AppImageEnabled": false,
   "NewInstallInitSettings": true,
   "UseSymbolicTray": true,
+  "TrayIconPath": "",
+  "TrayUpdatesIconPath": "",
+  "DefaultPageDropDown": 0,
+  "SuppressFingerprintWarning": false,
+  "RecommendedEnabled": false,
   "ProgressBarStyle": "Blocks",
   "ProgressBarFps": 7,
-  "ProgressBarWidth": 24
+  "ProgressBarWidth": 24,
+  "OutputMode": "singlepane",
+  "SinglePaneMaxStickies": 6
 }

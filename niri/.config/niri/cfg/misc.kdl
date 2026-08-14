@@ -8,6 +8,8 @@
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_CURRENT_DESKTOP "niri"
         XDG_SESSION_TYPE "wayland"
+        LIBVA_DRIVER_NAME "nvidia"
+        MOZ_DISABLE_RDD_SANDBOX "1"
     }
 
     debug {

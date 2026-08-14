@@ -4,6 +4,7 @@
 # Usage:
 #   ./install.sh               # stow all packages
 #   ./install.sh nvim fish     # stow only listed packages
+#   ./install.sh nvim-salar    # switch Neovim to SalarAlo config
 #   ./install.sh -D            # unstow all packages
 #   ./install.sh -D nvim       # unstow listed packages
 #   ./install.sh -n            # dry-run (stow --no, just show what would happen)
@@ -34,13 +35,20 @@ ALL_PACKAGES=(
   zed
 )
 
+# Alternative packages are intentionally not installed by default.
+# Install one explicitly when you want to switch to it.
+ALTERNATIVE_PACKAGES=(
+  nvim-salar
+)
+
 STOW_FLAGS=()
 ACTION="stow"
+DRY_RUN=0
 
 while [[ $# -gt 0 ]] && [[ "$1" == -* ]]; do
   case "$1" in
     -D|--delete) ACTION="unstow"; shift ;;
-    -n|--no)     STOW_FLAGS+=("--no"); shift ;;
+    -n|--no)     STOW_FLAGS+=("--no"); DRY_RUN=1; shift ;;
     -h|--help)   sed -n '2,12p' "$0"; exit 0 ;;
     *) echo "unknown flag: $1" >&2; exit 1 ;;
   esac
@@ -61,6 +69,26 @@ backup_conflicts() {
   local pkg="$1"
   local pkg_dir="$DOTFILES_DIR/$pkg"
   local moved=0
+
+  remove_conflicting_stow_link() {
+    local target="$1"
+    local path="$target"
+    local resolved
+
+    while [[ "$path" != "$TARGET" && "$path" == "$TARGET"* ]]; do
+      if [[ -L "$path" ]]; then
+        resolved=$(readlink -f -- "$path" 2>/dev/null || true)
+        if [[ -n "$resolved" && "$resolved" == "$DOTFILES_DIR"/* && "$resolved" != "$pkg_dir"/* ]]; then
+          rm -- "$path"
+          return 0
+        fi
+      fi
+      path="$(dirname "$path")"
+    done
+
+    return 1
+  }
+
   # 1. Move conflicting files / replace stale symlinks.
   #    Skip anything whose path resolves back into our own package —
   #    otherwise `mv` would follow a parent symlink (e.g. ~/.config/gtk-3.0
@@ -72,6 +100,9 @@ backup_conflicts() {
     resolved=$(readlink -f -- "$target" 2>/dev/null || true)
     if [[ -n "$resolved" && "$resolved" == "$pkg_dir"/* ]]; then
       continue
+    fi
+    if [[ -n "$resolved" && "$resolved" == "$DOTFILES_DIR"/* ]]; then
+      remove_conflicting_stow_link "$target" && continue
     fi
     if [[ -L "$target" ]]; then
       rm -- "$target"
@@ -114,11 +145,15 @@ for pkg in "${PACKAGES[@]}"; do
     stow "${STOW_FLAGS[@]}" -d "$DOTFILES_DIR" -t "$TARGET" -D "$pkg"
   else
     echo "→ stow $pkg"
-    backup_conflicts "$pkg"
+    if [[ $DRY_RUN -eq 0 ]]; then
+      backup_conflicts "$pkg"
+    fi
     stow "${STOW_FLAGS[@]}" -d "$DOTFILES_DIR" -t "$TARGET" -R "$pkg"
   fi
 done
 
 echo
 echo "Done."
-[[ -d "$BACKUP_DIR" ]] && echo "Replaced files were backed up to: $BACKUP_DIR"
+if [[ -d "$BACKUP_DIR" ]]; then
+  echo "Replaced files were backed up to: $BACKUP_DIR"
+fi

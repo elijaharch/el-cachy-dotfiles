@@ -5,6 +5,9 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- enable termguicolors
+vim.opt.termguicolors = true
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -27,6 +30,19 @@ vim.opt.numberwidth = 2
 vim.opt.signcolumn = "yes:1"
 vim.opt.statuscolumn = " %l%s"
 vim.opt.cursorlineopt = "line"
+
+-- Disable annoying swapfiles
+vim.opt.swapfile = false
+
+-- Automatically reload files when they change on disk
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	group = vim.api.nvim_create_augroup("AutoReload", { clear = true }),
+	callback = function()
+		if vim.fn.getcmdwintype() == "" then
+			vim.cmd("checktime")
+		end
+	end,
+})
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -137,6 +153,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.o.inccommand = "split"
 vim.o.tabstop = 4
 -- Show which line your cursor is on
+
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
@@ -897,7 +914,7 @@ require("lazy").setup({
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("moonfly")
+			-- vim.cmd.colorscheme("moonfly")
 		end,
 	},
 

@@ -9,6 +9,8 @@ input {
             layout "us,ru" // Use the American keyboard layout
 	    options "grp:alt_shift_toggle"
         }
+        repeat-delay 200
+        repeat-rate 35
         numlock // Enable numlock on startup
     }
 

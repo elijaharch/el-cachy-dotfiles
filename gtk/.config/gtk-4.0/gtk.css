@@ -1,6 +1,3 @@
-
-
-
 .nautilus-window,
 .nautilus-window > * {
   background-color: transparent;
@@ -38,3 +35,6 @@
 .nautilus-window .sidebar-pane {
   background-color: rgba(0, 0, 0, 0.35);
 }
+
+@import url("noctalia.css");
+@import 'colors.css';
