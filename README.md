@@ -6,7 +6,7 @@
 ```bash
 sudo pacman -S stow
 
-git clone git@github.com:nerfthisdev/<repo>.git ~/dotfiles
+git clone git@github.com:elijaharch/el-cachy-dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
 ./install.sh
