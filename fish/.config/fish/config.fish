@@ -55,3 +55,7 @@ fish_add_path /home/el/.spicetify
 
 # Pi
 fish_add_path "/home/el/.local/share/pi-node/node-v22.23.2-linux-x64/bin"
+
+if status is-interactive
+    atuin init fish | source
+end
