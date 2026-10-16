@@ -20,15 +20,21 @@ fish_add_path $HOME/.local/share/nvim/mason/bin/
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.spicetify
 
-abbr -a c  'clear'
+abbr -a c 'clear'
+abbr cp "cp -r"
 abbr -a codex 'ALL_PROXY="socks5://127.0.0.1:2080" codex'
-abbr -a ssh 'kitten ssh'
-abbr -a ll 'eza -lh'
-abbr -a l  'eza -lah'
+if type -q eza
+  abbr -a ls 'eza -a'
+  abbr -a l  'eza -la'
+  abbr -a ll 'eza -lah'
+end
 abbr -a lg 'lazygit'
 abbr -a mvim 'NVIM_APPNAME=nvim-minimax nvim'
-abbr -a top 'btop'
-abbr -a v 'nvim'
+abbr -a top btop
+abbr -a v nvim
+abbr vi nvim
+abbr vim nvim
+alias freload="source ~/.config/fish/config.fish"
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
